@@ -249,16 +249,30 @@ function populateGamePage() {
 
 // Displays 3, 2, 1, GO!!!
 function countdownStart() {
-  countdown.textContent = '3';
-  setTimeout(() => {
-    countdown.textContent = '2';
-  }, 1000);
-  setTimeout(() => {
-    countdown.textContent = '1';
-  }, 2000);
-  setTimeout(() => {
-    countdown.textContent = 'Go!';
-  }, 3000);
+  let count = 3;
+  countdown.textContent = count;
+  const timeCountdown = setInterval(() => {
+    count--;
+    if (count === 0) {
+      countdown.textContent = 'Go!';
+    } else if (count === -1) {
+      showGamePage()
+      clearInterval()
+    } else {
+      countdown.textContent = count
+    }
+  }, 1000)
+
+  // Option 2
+  // setTimeout(() => {
+  //   countdown.textContent = '2';
+  // }, 1000);
+  // setTimeout(() => {
+  //   countdown.textContent = '1';
+  // }, 2000);
+  // setTimeout(() => {
+  //   countdown.textContent = 'Go!';
+  // }, 3000);
 }
 
 
@@ -268,7 +282,7 @@ function showCountdown() {
   splashPage.hidden = true;
   countdownStart();
   populateGamePage();
-  setTimeout(showGamePage, 4000);
+  // setTimeout(showGamePage, 4000);
 }
 
 // Get the value from selected radio button
